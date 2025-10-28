@@ -1,0 +1,167 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Amber Palette — Web Hub</title>
+  <meta name="description" content="Amber Paletteの提供用ハブ。Whisky Tasting Step、World Whisky Index、Aromaポチ、Cask Atlas、Amber Tours へのリンク。" />
+  <style>
+    :root {
+      --amber:#d7b274; 
+      --ink:#1c1814; 
+      --bg:#0e0c0a; 
+      --panel:#181512; 
+      --light:#f5e9d0;
+    }
+    body {
+      margin:0;
+      font-family: "Noto Sans JP", "Playfair Display", serif;
+      background: radial-gradient(circle at 50% 0%, rgba(215,178,116,.15), transparent 70%), var(--bg);
+      color:var(--light);
+      text-align:center;
+    }
+    header {
+      padding:40px 20px 10px;
+    }
+    h1 {
+      font-size:1.8em;
+      letter-spacing:0.06em;
+      color:var(--amber);
+      margin-bottom:10px;
+    }
+    p.sub {
+      opacity:.7;
+      font-size:.95em;
+      margin-top:0;
+    }
+    .hub {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap:20px;
+      max-width:1080px;
+      margin:40px auto;
+      padding:0 20px;
+    }
+    .card {
+      background:var(--panel);
+      border:1px solid rgba(215,178,116,.25);
+      border-radius:16px;
+      padding:28px 20px;
+      transition:.3s;
+      text-decoration:none;
+      color:var(--light);
+    }
+    .card:hover {
+      background:#1c1814;
+      border-color:var(--amber);
+      transform:translateY(-4px);
+    }
+    .card h2 {
+      margin:0 0 10px;
+      font-size:1.3em;
+      color:var(--amber);
+    }
+    .card p {
+      font-size:.95em;
+      opacity:.85;
+    }
+
+    /* 🍊 Aromaポチ */
+    .card.aroma {
+      background: radial-gradient(circle at 40% 30%, #fdf4e0, #f7dca4, #d7b274);
+      color:#3e2a18;
+      font-weight:500;
+      box-shadow:0 0 10px rgba(215,178,116,.3);
+      transition: all .4s ease-in-out;
+    }
+    .card.aroma:hover {
+      box-shadow:0 0 18px rgba(215,178,116,.5);
+      transform:translateY(-3px);
+    }
+
+    /* 🥃 Whisky Tasting Step */
+    .card.step {
+      background: linear-gradient(160deg, #3a2c1a, #704d2b);
+      border-color:#cfa887;
+    }
+
+    /* 🌍 World Whisky Index */
+    .card.index {
+      background: linear-gradient(145deg, #0e0d18, #1f1b17);
+      border:1px solid #d7b274;
+      box-shadow:0 0 16px rgba(215,178,116,.3);
+      transform:scale(1.03);
+    }
+
+    /* 🪵 Cask Atlas */
+    .card.cask {
+      background: linear-gradient(160deg, #1d1812, #34291f, #4d3925);
+      border-color:#9a7048;
+      box-shadow:0 0 10px rgba(154,112,72,.25);
+    }
+    .card.cask:hover {
+      box-shadow:0 0 18px rgba(154,112,72,.45);
+      transform:translateY(-3px);
+    }
+
+    /* 🧭 Amber Tours */
+    .card.tours {
+      background: linear-gradient(145deg, #0c101a, #1b2433);
+      border-color:#d7b274;
+      color:#f3e6c1;
+      box-shadow:0 0 14px rgba(215,178,116,.25);
+      transition: all .4s ease;
+    }
+    .card.tours:hover {
+      box-shadow:0 0 22px rgba(215,178,116,.5);
+      transform:translateY(-5px) scale(1.02);
+    }
+
+    footer {
+      margin:60px 0 20px;
+      font-size:.8em;
+      color:#bba988;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Amber Palette—Hub</h1>
+    <p class="sub">Whisky Tasting Step / World Whisky Index / Aromaポチ / Cask Atlas / Amber Tours</p>
+  </header>
+
+  <section class="hub">
+    <a href="https://whisky-tasting-step.vercel.app/" class="card step" target="_blank">
+      <h2>Whisky Tasting Step</h2>
+      <p>香味の流れを体験するステップガイド<br>
+      Scent Progression / Scent Flow</p>
+    </a>
+
+    <a href="https://world-whisky-index.vercel.app/" class="card index" target="_blank">
+      <h2>World Whisky Index</h2>
+      <p>世界の蒸留所と地域別検索<br>
+      Global Distilleries and Regional Search</p>
+    </a>
+
+    <a href="https://aromapochi.vercel.app/index.html" class="card aroma" target="_blank">
+      <h2>Aroma Pochi</h2>
+      <p>色と香りを可視化する<br>
+      Drawing Out the Color and Scent</p>
+    </a>
+
+    <a href="https://dummy-hub.vercel.app/cask-atlas" class="card cask" target="_blank">
+      <h2>Cask Atlas</h2>
+      <p>樽タイプ・サイズ・熟成を学ぶ<br>
+      Study Cask Types, Sizes, and Maturation.</p>
+    </a>
+
+    <a href="https://coloring-app-git-main-rrkkhiroakis-projects.vercel.app/" class="card tours" target="_blank">
+      <h2>Amber Tools</h2>
+      <p>ちょっと便利ツール<br>
+      Little Helpers</p>
+    </a>
+  </section>
+
+  <footer>© Amber Palette — Bar SPEC</footer>
+</body>
+</html>
