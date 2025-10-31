@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Amber Palette — To-Do List</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+JP:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --amber:#b27a42;
+  --amber-soft:#f1dec3;
+  --deep:#3a2e2e;
+  --paper:#f7ede1;
+  --line:rgba(194,155,108,.45);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; padding:20px;
+  font-family:"Noto Sans JP",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  color:var(--deep);
+  background:radial-gradient(circle at top, var(--paper), #e9d7bc);
+}
+header{
+  text-align:center; margin:8px 0 18px;
+}
+h1{
+  font-family:"Playfair Display",serif; letter-spacing:.3px;
+  margin:0 0 8px; color:var(--deep); font-size:28px;
+}
+.subtitle{color:#6a5858; font-size:14px}
+.container{max-width:900px; margin:0 auto}
+.toolbar{
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:14px 0 22px;
+}
+button,.pill{
+  border:1px solid var(--line);
+  padding:9px 14px; border-radius:10px; background:#fff;
+  color:var(--deep); cursor:pointer; font-weight:600;
+}
+button:hover{background:var(--amber-soft)}
+.progress{
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:10px; margin:10px 0 18px;
+}
+.progress-bar{
+  height:10px; background:linear-gradient(90deg,var(--amber),#d4a566);
+  width:0%; border-radius:8px; transition:width .25s;
+}
+.progress-text{font-size:12px; color:#5a4a44; margin-top:6px; text-align:right}
+details{
+  border:2px solid var(--line); border-radius:14px; padding:0; background:#fff;
+  margin:12px 0; overflow:hidden;
+}
+summary{
+  list-style:none; cursor:pointer; padding:14px 16px;
+  font-weight:700; display:flex; align-items:center; gap:10px;
+  background:linear-gradient(180deg, #fff, #fff9f1);
+}
+summary::-webkit-details-marker{display:none}
+.cat-icon{
+  width:24px; height:24px; display:inline-grid; place-items:center;
+  background:var(--amber); color:#fff; border-radius:8px; font-size:14px; font-weight:700;
+}
+.group{padding:10px 16px 16px; border-top:1px dashed var(--line); background:#fff}
+ul.tasks{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+.task{
+  display:flex; align-items:flex-start; gap:10px; padding:10px 12px; border:1px solid rgba(0,0,0,.05); border-radius:10px;
+  background:#fff;
+}
+.task:hover{background:#fffbf3}
+.task input[type="checkbox"]{transform:translateY(2px) scale(1.1)}
+.task label{flex:1}
+.badge{
+  font-size:11px; padding:2px 8px; border-radius:999px; border:1px solid var(--line); background:#fff;
+  color:#6a5858; margin-left:6px;
+}
+footer{
+  text-align:center; font-size:12px; color:#6a5858; margin:24px 0 6px;
+}
+.small{font-size:12px; color:#7a6969}
+.kbd{
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background:#fff; border:1px solid var(--line); border-bottom-width:2px; padding:1px 6px; border-radius:6px; font-size:12px;
+}
+</style>
+</head>
+<body>
+<header class="container">
+  <h1>Amber Palette — To-Do List</h1>
+  <div class="subtitle">11/9 完成までの進捗管理（チェックは端末内に自動保存）</div>
+</header>
+
+<div class="container">
+  <div class="toolbar">
+    <button id="expandAll">＋ 全カテゴリを開く</button>
+    <button id="collapseAll">－ 全カテゴリを閉じる</button>
+    <button id="checkAll">✔ すべて完了に</button>
+    <button id="uncheckAll">□ すべて未完に</button>
+    <button id="export">⤴ データを書き出し</button>
+    <button id="import">⤵ データを読み込み</button>
+    <button id="reset">🗑 進捗データを初期化</button>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="bar"></div>
+    <div class="progress-text"><span id="doneCount">0</span>/<span id="allCount">0</span> 完了（<span id="percent">0</span>%）</div>
+  </div>
+
+  <!-- I. 環境・運用整備 -->
+  <details open data-cat="env">
+    <summary><span class="cat-icon">I</span> 環境・運用整備 <span class="badge">Git / 構成</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="env1"><label for="env1">Git 運用マニュアル（Work版）導入</label></li>
+        <li class="task"><input type="checkbox" id="env2"><label for="env2">モバイルPC用フォルダ <span class="kbd">amber-palette-hub-mobile</span> 作成</label></li>
+        <li class="task"><input type="checkbox" id="env3"><label for="env3">main と feature/mobile の運用開始（mainは“触らない”）</label></li>
+        <li class="task"><input type="checkbox" id="env4"><label for="env4">両環境で Pull / Push テスト</label></li>
+        <li class="task"><input type="checkbox" id="env5"><label for="env5"><span class="kbd">.gitignore</span> 整備（<span class="kbd">vercel</span> / <span class="kbd">node_modules</span> 等）</label></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- II. デザイン・UI 統一 -->
+  <details data-cat="ui">
+    <summary><span class="cat-icon">II</span> デザイン・UI 統一 <span class="badge">Amberテーマ</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="ui1"><label for="ui1">共通フォント：Playfair Display ＋ Noto Sans JP</label></li>
+        <li class="task"><input type="checkbox" id="ui2"><label for="ui2">背景：琥珀グラデ（#f7ede1 → #f1dec3）統一</label></li>
+        <li class="task"><input type="checkbox" id="ui3"><label for="ui3">Footer／Header／JP-EN 切替を共通化</label></li>
+        <li class="task"><input type="checkbox" id="ui4"><label for="ui4">Back to HUB ボタン（モバイル最適化）</label></li>
+        <li class="task"><input type="checkbox" id="ui5"><label for="ui5">各ツールのタイトル書式統一（例：Amber Atlas — CASK Atlas）</label></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- III. 効果音実装 -->
+  <details data-cat="sound">
+    <summary><span class="cat-icon">III</span> 効果音実装 <span class="badge">クリック / 展開</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="se1"><label for="se1">ボタン音「ぽちぃ」（Mixkit click）設置</label></li>
+        <li class="task"><input type="checkbox" id="se2"><label for="se2">階層展開音「Sophisticated Chime」（Freepik）設置</label></li>
+        <li class="task"><input type="checkbox" id="se3"><label for="se3"><span class="kbd">assets/sound/</span> フォルダ作成＆格納</label></li>
+        <li class="task"><input type="checkbox" id="se4"><label for="se4"><span class="kbd">preload="none"</span> で軽量ロードに</label></li>
+        <li class="task"><input type="checkbox" id="se5"><label for="se5">Footer に Freepik クレジット追加</label></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- IV. 各モジュール整備 -->
+  <details data-cat="modules">
+    <summary><span class="cat-icon">IV</span> 各モジュール整備 <span class="badge">CASK / Atlas / etc.</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="mod1"><label for="mod1">CASK Atlas：<code>&lt;details&gt;</code> 展開音を同期再生</label></li>
+        <li class="task"><input type="checkbox" id="mod2"><label for="mod2">CASK Atlas：カード整列（.details-level1/2）</label></li>
+        <li class="task"><input type="checkbox" id="mod3"><label for="mod3">Amber Atlas：summary 構造見直し＋アニメ</label></li>
+        <li class="task"><input type="checkbox" id="mod4"><label for="mod4">Coloring：6色×21色UI／説明文更新</label></li>
+        <li class="task"><input type="checkbox" id="mod5"><label for="mod5">Aroma Pochi：加水前後モーダル追加</label></li>
+        <li class="task"><input type="checkbox" id="mod6"><label for="mod6">Weather：気温・湿度・位置許可のエラー対策</label></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- V. 構成整理 -->
+  <details data-cat="structure">
+    <summary><span class="cat-icon">V</span> 構成整理 <span class="badge">assets / styles 共通化</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="st1"><label for="st1"><span class="kbd">/assets</span> / <span class="kbd">/scripts</span> / <span class="kbd">/styles</span> 共通化</label></li>
+        <li class="task"><input type="checkbox" id="st2"><label for="st2"><span class="kbd">/amber-icons/</span> 作成（フォルダアイコン置き場）</label></li>
+        <li class="task"><input type="checkbox" id="st3"><label for="st3">LICENSE_or_credit.txt に Freepik 情報を記載</label></li>
+        <li class="task"><input type="checkbox" id="st4"><label for="st4">Hub → 各ツールのリンク確認（往復導線）</label></li>
+        <li class="task"><input type="checkbox" id="st5"><label for="st5">各 index の「戻る」導線を統一</label></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- VI. デプロイ・確認 -->
+  <details data-cat="deploy">
+    <summary><span class="cat-icon">VI</span> デプロイ・確認 <span class="badge">Vercel</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="dp1"><label for="dp1">Git main に最終マージ</label></li>
+        <li class="task"><input type="checkbox" id="dp2"><label for="dp2">Vercel Production Deploy</label></li>
+        <li class="task"><input type="checkbox" id="dp3"><label for="dp3">スマホ／PC 最終表示確認（日本語・音含む）</label></li>
+        <li class="task"><input type="checkbox" id="dp4"><label for="dp4">タグ付け <span class="kbd">v1.0-final (2025-11-09)</span></label></li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- VII. アイコン -->
+  <details data-cat="icons">
+    <summary><span class="cat-icon">VII</span> アイコン関連 <span class="badge">.ico / .png</span></summary>
+    <div class="group">
+      <ul class="tasks">
+        <li class="task"><input type="checkbox" id="ic1"><label for="ic1">amber-hub.ico（APロゴ／フラット）</label></li>
+        <li class="task"><input type="checkbox" id="ic2"><label for="ic2">cask-atlas.ico（樽ブラウン）</label></li>
+        <li class="task"><input type="checkbox" id="ic3"><label for="ic3">mobile-work.ico（青グレー）</label></li>
+        <li class="task"><input type="checkbox" id="ic4"><label for="ic4">ZIP出力・設定手順メモ追加</label></li>
+      </ul>
+    </div>
+  </details>
+
+  <p class="small">ヒント：長押しで範囲選択 → 一気にチェックもOK。チェックはこの端末のブラウザに保存されます。</p>
+</div>
+
+<footer>© Amber Palette · Project To-Do</footer>
+
+<script>
+(function(){
+  const KEY="amber_todo_v1";
+  const checks=[...document.querySelectorAll('input[type="checkbox"]')];
+  const bar=document.getElementById('bar');
+  const doneCount=document.getElementById('doneCount');
+  const allCount=document.getElementById('allCount');
+  const percent=document.getElementById('percent');
+
+  function save(){
+    const data={};
+    checks.forEach(c=>data[c.id]=c.checked);
+    localStorage.setItem(KEY, JSON.stringify(data));
+    updateProgress();
+  }
+  function load(){
+    const raw=localStorage.getItem(KEY);
+    if(!raw) return updateProgress();
+    try{
+      const data=JSON.parse(raw);
+      checks.forEach(c=>{ if(data[c.id]!==undefined) c.checked=!!data[c.id]; });
+    }catch(e){}
+    updateProgress();
+  }
+  function updateProgress(){
+    const total=checks.length;
+    const done=checks.filter(c=>c.checked).length;
+    const pct=Math.round((done/Math.max(total,1))*100);
+    bar.style.width=pct+"%";
+    doneCount.textContent=done;
+    allCount.textContent=total;
+    percent.textContent=pct;
+  }
+
+  checks.forEach(c=>c.addEventListener('change', save));
+  load();
+
+  // Toolbar actions
+  document.getElementById('expandAll').onclick=()=>{ document.querySelectorAll('details').forEach(d=>d.open=true); }
+  document.getElementById('collapseAll').onclick=()=>{ document.querySelectorAll('details').forEach(d=>d.open=false); }
+  document.getElementById('checkAll').onclick=()=>{ checks.forEach(c=>c.checked=true); save(); }
+  document.getElementById('uncheckAll').onclick=()=>{ checks.forEach(c=>c.checked=false); save(); }
+  document.getElementById('reset').onclick=()=>{
+    if(confirm('進捗データを初期化します。よろしいですか？')){
+      localStorage.removeItem(KEY); checks.forEach(c=>c.checked=false); updateProgress();
+    }
+  };
+  document.getElementById('export').onclick=()=>{
+    const blob=new Blob([localStorage.getItem(KEY) || "{}"], {type:"application/json"});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download="amber_todo_backup.json"; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),500);
+  };
+  document.getElementById('import').onclick=()=>{
+    const inp=document.createElement('input'); inp.type="file"; inp.accept="application/json";
+    inp.onchange=e=>{
+      const file=e.target.files[0]; if(!file) return;
+      const reader=new FileReader();
+      reader.onload=()=>{
+        try{
+          JSON.parse(reader.result); // validate
+          localStorage.setItem(KEY, reader.result);
+          load();
+          alert('インポートしました。');
+        }catch(err){ alert('JSONが不正です。'); }
+      };
+      reader.readAsText(file, "utf-8");
+    };
+    inp.click();
+  };
+})();
+</script>
+</body>
+</html>
