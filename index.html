@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Amber Palette — Web Hub</title>
-  <meta name="description" content="Amber Paletteの提供用ハブ。Whisky Tasting Step、World Whisky Index、Aromaポチ、Cask Atlas、Amber Tours へのリンク。" />
+  <meta name="description" content="Amber Paletteの提供用ハブ。Whisky Tasting Step、World Whisky Index、Aromaポチ、Cask Atlas、Amber Tools へのリンク。" />
   <style>
     :root {
       --amber:#d7b274; 
@@ -19,7 +19,6 @@
       background: radial-gradient(circle at 50% 0%, rgba(215,178,116,.15), transparent 70%), var(--bg);
       color:var(--light);
       text-align:center;
-      /* 横スクロール防止 */
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased;
     }
@@ -41,12 +40,11 @@
     }
     .hub {
       display:grid;
-      /* スマホでは1列、画面が広がれば自動で列が増える設定 */
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap:24px;
       max-width:1080px;
       margin:40px auto;
-      padding:0 20px 60px; /* 下部に余白を追加 */
+      padding:0 20px 60px;
     }
     .card {
       background:var(--panel);
@@ -60,7 +58,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 120px; /* カードの高さを揃えやすくする */
+      min-height: 120px;
     }
     /* PC向けホバー */
     @media (hover: hover) {
@@ -70,7 +68,7 @@
         transform:translateY(-4px);
       }
     }
-    /* スマホ向けタップ（Active）アクション */
+    /* スマホ向けタップ */
     .card:active {
       transform: scale(0.98);
       opacity: 0.9;
@@ -114,7 +112,6 @@
       border:1px solid #d7b274;
       box-shadow:0 0 16px rgba(215,178,116,.3);
     }
-    /* Indexはデフォルトで少し強調 */
     @media (min-width: 768px) {
       .card.index { transform:scale(1.03); }
       .card.index:hover { transform:scale(1.03) translateY(-4px); }
@@ -133,7 +130,7 @@
       }
     }
 
-    /* 🧭 Amber Tools */
+    /* 🧭 Amber Tools (旧 Tours) */
     .card.tours {
       background: linear-gradient(145deg, #0c101a, #1b2433);
       border-color:#d7b274;
@@ -167,38 +164,28 @@
       opacity: 0.8;
     }
 
-    /* --- スマホ向け最適化 (Media Query) --- */
     @media screen and (max-width: 600px) {
-      header {
-        padding: 30px 15px 5px;
-      }
-      h1 {
-        font-size: 1.5em; /* タイトルを少し小さく */
-      }
-      p.sub {
-        font-size: 0.85em; /* サブテキストも調整 */
-      }
+      header { padding: 30px 15px 5px; }
+      h1 { font-size: 1.5em; }
+      p.sub { font-size: 0.85em; }
       .hub {
         margin: 20px auto;
-        gap: 16px; /* カード間の隙間を少し詰める */
-        grid-template-columns: 1fr; /* 完全な1カラムにして安定させる */
+        gap: 16px;
+        grid-template-columns: 1fr;
         padding: 0 16px 40px;
       }
       .card {
-        padding: 24px 16px; /* カード内の余白を微調整 */
-        min-height: auto; /* 高さは成り行き任せ */
+        padding: 24px 16px;
+        min-height: auto;
       }
-      /* Indexカードの拡大効果をスマホでは無効化（レイアウト崩れ防止） */
-      .card.index {
-        transform: none;
-      }
+      .card.index { transform: none; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Amber Palette—Hub</h1>
-    <p class="sub">Whisky Tasting Step / World Whisky Index / AromaPochi / Cask Atlas / Amber Tours</p>
+    <p class="sub">Whisky Tasting Step / World Whisky Index / AromaPochi / Cask Atlas / Amber Tools</p>
   </header>
 
   <section class="hub">
@@ -226,7 +213,7 @@
       Study Cask Types, Sizes, and Maturation.</p>
     </a>
 
-    <a href="https://coloring-app-1dh5.vercel.app/" class="card tours" target="_blank">
+    <a href="https://amber-tools-hub.vercel.app/" class="card tours" target="_blank">
       <h2>Amber Tools</h2>
       <p>ちょっと便利ツール<br>
       Little Helpers</p>
