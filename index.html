@@ -38,14 +38,23 @@
       margin-top:0;
       line-height: 1.6;
     }
+    
+    /* 修正点: hub の display を変更し、常に3列になるように設定 */
     .hub {
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr); /* PCで常に3列 */
       gap:24px;
       max-width:1080px;
       margin:40px auto;
       padding:0 20px 60px;
     }
+    /* 修正点: カードを縦方向に並べるための新しいコンテナ */
+    .hub-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
     .card {
       background:var(--panel);
       border:1px solid rgba(215,178,116,.25);
@@ -59,6 +68,8 @@
       flex-direction: column;
       justify-content: center;
       min-height: 120px;
+      /* 追加: flexアイテムとして利用するために高さの伸縮を許可 */
+      flex-grow: 1; 
     }
     @media (hover: hover) {
       .card:hover {
@@ -109,12 +120,29 @@
       border:1px solid #d7b274;
       box-shadow:0 0 16px rgba(215,178,116,.3);
     }
+    /* 修正点: 常に3列表示になるため、Indexカードの拡大を解除 */
     @media (min-width: 768px) {
-      .card.index { transform:scale(1.03); }
-      .card.index:hover { transform:scale(1.03) translateY(-4px); }
+      .card.index { transform:none; }
+      .card.index:hover { transform:translateY(-4px); }
     }
 
     /* 🪵 Cask Atlas */
+	 /* ⚙️ Whisky Process */
+.card.process {
+  background: linear-gradient(155deg, #1a1a1a, #2e261c, #5a4630);
+  border:1px solid rgba(215,178,116,.35);
+  box-shadow:0 0 12px rgba(215,178,116,.25);
+}
+@media (hover: hover) {
+  .card.process:hover {
+    transform:translateY(-4px) scale(1.03);
+    box-shadow:0 0 20px rgba(215,178,116,.45);
+    /* 3列固定のため、hover時のscaleを元に戻す */
+    transform:translateY(-4px);
+  }
+}
+ 
+	  
     .card.cask {
       background: linear-gradient(160deg, #1d1812, #34291f, #4d3925);
       border-color:#9a7048;
@@ -137,7 +165,8 @@
     @media (hover: hover) {
       .card.tours:hover {
         box-shadow:0 0 22px rgba(215,178,116,.5);
-        transform:translateY(-5px) scale(1.02);
+        /* 3列固定のため、hover時のscaleを元に戻す */
+        transform:translateY(-5px);
       }
     }
 
@@ -149,7 +178,8 @@
     }
     @media (hover: hover) {
       .card.dict:hover {
-        transform:translateY(-4px) scale(1.03);
+        /* 3列固定のため、hover時のscaleを元に戻す */
+        transform:translateY(-4px);
         box-shadow:0 0 20px rgba(215,178,116,.45);
       }
     }
@@ -161,6 +191,7 @@
       opacity: 0.8;
     }
 
+    /* 修正点: 600px以下では元のスマホレイアウトに戻す */
     @media screen and (max-width: 600px) {
       header { padding: 30px 15px 5px; }
       h1 { font-size: 1.5em; }
@@ -168,14 +199,37 @@
       .hub {
         margin: 20px auto;
         gap: 16px;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* スマホでは1列に戻す */
         padding: 0 16px 40px;
+      }
+      .hub-col {
+        display: block; /* hub-colの役割を解除 */
+        gap: 16px;
       }
       .card {
         padding: 24px 16px;
         min-height: auto;
+        margin-bottom: 16px; /* hub-colのgapを再現 */
       }
-      .card.index { transform: none; }
+      .card:last-child {
+          margin-bottom: 0;
+      }
+    }
+    
+    /* スマホ表示で全てのカードを順番に表示するために、
+    カード自体にもスタイルを適用できるように調整 */
+    @media screen and (max-width: 600px) {
+        /* hub-col内のカードマージンを解除し、全てを1つの順序で表示 */
+        .hub-col .card {
+            margin-bottom: 16px;
+        }
+        .hub-col:last-child .card:last-child {
+            margin-bottom: 0;
+        }
+        /* hub-colを全て解除し、中身を直接フローさせる */
+        .hub-col {
+            display: contents; 
+        }
     }
   </style>
 </head>
@@ -186,41 +240,54 @@
   </header>
 
   <section class="hub">
-    <a href="https://whisky-tasting-step.vercel.app/" class="card step" target="_blank">
-      <h2>Whisky Tasting Step</h2>
-      <p>香味の流れを体験するステップガイド<br>
-      Scent Progression / Scent Flow</p>
-    </a>
+    
+    <div class="hub-col">
+        <a href="https://world-whisky-index.vercel.app/" class="card index" target="_blank">
+          <h2>World Whisky Index</h2>
+          <p>世界の蒸留所と地域別検索<br>
+          Global Distilleries and Regional Search</p>
+        </a>
 
-    <a href="https://world-whisky-index.vercel.app/" class="card index" target="_blank">
-      <h2>World Whisky Index</h2>
-      <p>世界の蒸留所と地域別検索<br>
-      Global Distilleries and Regional Search</p>
-    </a>
+        <a href="https://amber-dictionary.vercel.app/" class="card dict" target="_blank">
+          <h2>Amber Dictionary</h2>
+          <p>ウィスキー用語辞典<br>
+          Whisky Terms & Definitions</p>
+        </a>
 
-    <a href="https://amber-dictionary.vercel.app/" class="card dict" target="_blank">
-      <h2>Amber Dictionary</h2>
-      <p>ウィスキー用語辞典<br>
-      Whisky Terms & Definitions</p>
-    </a>
+        <a href="https://aromapochi.vercel.app/" class="card aroma" target="_blank">
+          <h2>Aroma Pochi</h2>
+          <p>色と香りを可視化する<br>
+          Drawing Out the Color and Scent</p>
+        </a>
+    </div>
+    
+    <div class="hub-col">
+        <a href="https://whisky-tasting-step.vercel.app/" class="card step" target="_blank">
+          <h2>Whisky Tasting Step</h2>
+          <p>香味の流れを体験するステップガイド<br>
+          Scent Progression / Scent Flow</p>
+        </a>
+        
+        <a href="https://amber-whisky-process.vercel.app/" class="card process" target="_blank">
+          <h2>Whisky Process</h2>
+          <p>製麦から瓶詰めまでの工程解説<br>
+          From Malting to Bottling</p>
+        </a>
+    </div>
 
-    <a href="https://amber-atlas.vercel.app/" class="card cask" target="_blank">
-      <h2>Cask Atlas</h2>
-      <p>樽タイプ・サイズ・熟成を学ぶ<br>
-      Study Cask Types, Sizes, and Maturation.</p>
-    </a>
-
-    <a href="https://amber-tools-hub.vercel.app/" class="card tours" target="_blank">
-      <h2>Amber Tools</h2>
-      <p>ちょっと便利ツール<br>
-      Little Helpers</p>
-    </a>
-
-    <a href="https://aromapochi.vercel.app/" class="card aroma" target="_blank">
-      <h2>Aroma Pochi</h2>
-      <p>色と香りを可視化する<br>
-      Drawing Out the Color and Scent</p>
-    </a>
+    <div class="hub-col">
+        <a href="https://amber-atlas.vercel.app/" class="card cask" target="_blank">
+          <h2>Cask Atlas</h2>
+          <p>樽タイプ・サイズ・熟成を学ぶ<br>
+          Study Cask Types, Sizes, and Maturation.</p>
+        </a>
+        
+        <a href="https://amber-tools-hub.vercel.app/" class="card tours" target="_blank">
+          <h2>Amber Tools</h2>
+          <p>ちょっと便利ツール<br>
+          Little Helpers</p>
+        </a>
+    </div>
 
   </section>
 
