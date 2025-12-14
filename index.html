@@ -107,6 +107,21 @@
         transform:translateY(-3px);
       }
     }
+    
+    /* 📜 Whisky History */
+    .card.history{
+        background:
+            linear-gradient(150deg,#1a140e,#3a2c1d,#6b4a2a);
+        border:1px solid rgba(215,178,116,.4);
+        box-shadow:0 0 18px rgba(215,178,116,.35);
+    }
+    @media(hover:hover){
+        .card.history:hover{
+            transform:translateY(-4px);
+            border-color:var(--amber);
+            background:#1c1814;
+        }
+    }
 
     /* 🥃 Whisky Tasting Step */
     .card.step {
@@ -126,23 +141,21 @@
       .card.index:hover { transform:translateY(-4px); }
     }
 
-    /* 🪵 Cask Atlas */
 	 /* ⚙️ Whisky Process */
-.card.process {
-  background: linear-gradient(155deg, #1a1a1a, #2e261c, #5a4630);
-  border:1px solid rgba(215,178,116,.35);
-  box-shadow:0 0 12px rgba(215,178,116,.25);
-}
-@media (hover: hover) {
-  .card.process:hover {
-    transform:translateY(-4px) scale(1.03);
-    box-shadow:0 0 20px rgba(215,178,116,.45);
-    /* 3列固定のため、hover時のscaleを元に戻す */
-    transform:translateY(-4px);
-  }
-}
+    .card.process {
+      background: linear-gradient(155deg, #1a1a1a, #2e261c, #5a4630);
+      border:1px solid rgba(215,178,116,.35);
+      box-shadow:0 0 12px rgba(215,178,116,.25);
+    }
+    @media (hover: hover) {
+      .card.process:hover {
+        transform:translateY(-4px);
+        box-shadow:0 0 20px rgba(215,178,116,.45);
+      }
+    }
  
 	  
+    /* 🪵 Cask Atlas */
     .card.cask {
       background: linear-gradient(160deg, #1d1812, #34291f, #4d3925);
       border-color:#9a7048;
@@ -165,7 +178,6 @@
     @media (hover: hover) {
       .card.tours:hover {
         box-shadow:0 0 22px rgba(215,178,116,.5);
-        /* 3列固定のため、hover時のscaleを元に戻す */
         transform:translateY(-5px);
       }
     }
@@ -178,7 +190,6 @@
     }
     @media (hover: hover) {
       .card.dict:hover {
-        /* 3列固定のため、hover時のscaleを元に戻す */
         transform:translateY(-4px);
         box-shadow:0 0 20px rgba(215,178,116,.45);
       }
@@ -203,8 +214,7 @@
         padding: 0 16px 40px;
       }
       .hub-col {
-        display: block; /* hub-colの役割を解除 */
-        gap: 16px;
+        display: contents; 
       }
       .card {
         padding: 24px 16px;
@@ -214,22 +224,13 @@
       .card:last-child {
           margin-bottom: 0;
       }
-    }
-    
-    /* スマホ表示で全てのカードを順番に表示するために、
-    カード自体にもスタイルを適用できるように調整 */
-    @media screen and (max-width: 600px) {
-        /* hub-col内のカードマージンを解除し、全てを1つの順序で表示 */
-        .hub-col .card {
-            margin-bottom: 16px;
-        }
-        .hub-col:last-child .card:last-child {
-            margin-bottom: 0;
-        }
-        /* hub-colを全て解除し、中身を直接フローさせる */
-        .hub-col {
-            display: contents; 
-        }
+      /* hub-col内のカードマージンを解除し、全てを1つの順序で表示 */
+      .hub-col .card {
+          margin-bottom: 16px;
+      }
+      .hub-col:last-child .card:last-child {
+          margin-bottom: 0;
+      }
     }
   </style>
 </head>
@@ -262,6 +263,12 @@
     </div>
     
     <div class="hub-col">
+        <a href="https://whisky-history.vercel.app/" class="card history" target="_blank">
+            <h2>Whisky History</h2>
+            <p>歴史・法律・文化的背景<br>
+            History, Law, and Cultural Background</p>
+        </a>
+        
         <a href="https://whisky-tasting-step.vercel.app/" class="card step" target="_blank">
           <h2>Whisky Tasting Step</h2>
           <p>香味の流れを体験するステップガイド<br>
