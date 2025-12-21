@@ -93,9 +93,25 @@
       margin: 0;
       line-height: 1.5;
     }
+/* 🌈 Amber Spectrum: 琥珀の分光をイメージした多色グラデ */
+    .card.spectrum {
+      background: linear-gradient(135deg, #4b2c20, #a0522d, #d7b274, #f5e9d0);
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      border-color: rgba(255,255,255,0.3);
+    }
+    @media (hover: hover) {
+      .card.spectrum:hover {
+        border-color: #f5e9d0;
+        box-shadow: 0 0 20px rgba(215,178,116,0.4);
+      }
+    }
 
-    /* 🍊 AromaPochi */
+    /* 🍊 AromaPochi (一番最後に置くための微調整) */
     .card.aroma {
+      /* 既存のスタイルを維持 */
+      opacity: 0.9; /* 整理対象として少し控えめにする演出もアリ */
+    }
       background: radial-gradient(circle at 40% 30%, #fdf4e0, #f7dca4, #d7b274);
       color:#3e2a18;
       font-weight:500;
@@ -240,64 +256,60 @@
     <p class="sub">Whisky Tasting Step / World Whisky Index / AromaPochi / Cask Atlas / Amber Tools</p>
   </header>
 
-  <section class="hub">
+<section class="hub">
     
     <div class="hub-col">
         <a href="https://world-whisky-index.vercel.app/" class="card index" target="_blank">
           <h2>World Whisky Index</h2>
-          <p>世界の蒸留所と地域別検索<br>
-          Global Distilleries and Regional Search</p>
+          <p>世界の蒸留所と地域別検索<br>Global Distilleries</p>
         </a>
 
         <a href="https://amber-dictionary.vercel.app/" class="card dict" target="_blank">
           <h2>Amber Dictionary</h2>
-          <p>ウィスキー用語辞典<br>
-          Whisky Terms & Definitions</p>
+          <p>ウィスキー用語辞典<br>Whisky Terms</p>
         </a>
 
-        <a href="https://aromapochi.vercel.app/" class="card aroma" target="_blank">
-          <h2>Aroma Pochi</h2>
-          <p>色と香りを可視化する<br>
-          Drawing Out the Color and Scent</p>
+        <a href="https://whisky-history.vercel.app/" class="card history" target="_blank">
+            <h2>Whisky History</h2>
+            <p>歴史・法律・文化的背景<br>History and Culture</p>
         </a>
     </div>
     
     <div class="hub-col">
-        <a href="https://whisky-history.vercel.app/" class="card history" target="_blank">
-            <h2>Whisky History</h2>
-            <p>歴史・法律・文化的背景<br>
-            History, Law, and Cultural Background</p>
-        </a>
-        
         <a href="https://whisky-tasting-step.vercel.app/" class="card step" target="_blank">
           <h2>Whisky Tasting Step</h2>
-          <p>香味の流れを体験するステップガイド<br>
-          Scent Progression / Scent Flow</p>
+          <p>香味の流れを体験するガイド<br>Scent Flow Guide</p>
         </a>
         
         <a href="https://amber-whisky-process.vercel.app/" class="card process" target="_blank">
           <h2>Whisky Process</h2>
-          <p>製麦から瓶詰めまでの工程解説<br>
-          From Malting to Bottling</p>
+          <p>製麦から瓶詰めまでの工程解説<br>Production Process</p>
+        </a>
+
+        <a href="https://amber-atlas.vercel.app/" class="card cask" target="_blank">
+          <h2>Cask Atlas</h2>
+          <p>樽タイプ・サイズ・熟成を学ぶ<br>Cask & Maturation</p>
         </a>
     </div>
 
     <div class="hub-col">
-        <a href="https://amber-atlas.vercel.app/" class="card cask" target="_blank">
-          <h2>Cask Atlas</h2>
-          <p>樽タイプ・サイズ・熟成を学ぶ<br>
-          Study Cask Types, Sizes, and Maturation.</p>
-        </a>
-        
         <a href="https://amber-tools-hub.vercel.app/" class="card tours" target="_blank">
           <h2>Amber Tools</h2>
-          <p>ちょっと便利ツール<br>
-          Little Helpers</p>
+          <p>ちょっと便利ツール<br>Little Helpers</p>
+        </a>
+
+        <a href="https://amber-spectrum.vercel.app/" class="card spectrum" target="_blank">
+          <h2>Amber Spectrum</h2>
+          <p>香味と色彩の相関を俯瞰する<br>Color & Flavor Correlation</p>
+        </a>
+
+        <a href="https://aromapochi.vercel.app/" class="card aroma" target="_blank">
+          <h2>Aroma Pochi</h2>
+          <p>色と香りを可視化する<br>Drawing Out Scent</p>
         </a>
     </div>
 
   </section>
-
   <footer>© Amber Palette — Bar SPEC</footer>
 </body>
 </html>
