@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amber Palette — Web Hub</title>
-  <meta name="description" content="Amber Paletteの提供用ハブ。Whisky Tasting Step、World Whisky Index、Aromaポチ、Cask Atlas、Amber Tools、Whisky Quizへのリンク。" />
+  <title>Whisky Tasting Journey — Amber Palette</title>
   <style>
     :root {
       --amber:#d7b274; 
@@ -22,262 +21,161 @@
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased;
     }
-    header {
-      padding:40px 20px 10px;
-    }
-    h1 {
-      font-size:1.8em;
-      letter-spacing:0.06em;
-      color:var(--amber);
-      margin-bottom:10px;
-      line-height: 1.3;
-    }
-    p.sub {
-      opacity:.7;
-      font-size:.95em;
-      margin-top:0;
-      line-height: 1.6;
-    }
-    
+    header { padding:40px 20px 0; }
+    h1 { font-size:1.4em; letter-spacing:0.15em; color:var(--amber); opacity: 0.8; margin-bottom: 20px; font-weight: 400; }
+
     .hub {
       display:grid;
-      grid-template-columns: repeat(3, 1fr); /* PCで常に3列 */
+      grid-template-columns: repeat(3, 1fr);
       gap:24px;
       max-width:1080px;
-      margin:40px auto;
+      margin:20px auto;
       padding:0 20px 60px;
     }
-    .hub-col {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
+    .hub-col { display: flex; flex-direction: column; gap: 24px; }
+
+    /* 🚩 Journey: 威厳のあるマホガニー・ブラウン */
+    .card.journey {
+      grid-column: 1 / 4; 
+      background: linear-gradient(110deg, #2a1b0f, #4d311e, #2a1b0f);
+      border: 1px solid rgba(215, 178, 116, 0.6);
+      padding: 45px 20px;
+      margin-bottom: 10px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(215, 178, 116, 0.05);
     }
+    .card.journey h2 { font-size: 2.2em; letter-spacing: 0.1em; color: var(--light); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
     .card {
-      background:var(--panel);
-      border:1px solid rgba(215,178,116,.25);
-      border-radius:16px;
-      padding:28px 20px;
-      transition:.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border:1px solid rgba(215,178,116,.18);
+      border-radius:12px; /* 少し角を鋭くしてシックに */
+      padding:32px 20px;
+      transition:.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       text-decoration:none;
       color:var(--light);
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 120px;
-      flex-grow: 1; 
-    }
-    @media (hover: hover) {
-      .card:hover {
-        background:#1c1814;
-        border-color:var(--amber);
-        transform:translateY(-4px);
-      }
-    }
-    .card:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-    .card h2 {
-      margin:0 0 10px;
-      font-size:1.3em;
-      color:var(--amber);
-    }
-    .card p {
-      font-size:.95em;
-      opacity:.85;
-      margin: 0;
-      line-height: 1.5;
-    }
-
-    /* 🌈 Amber Spectrum */
-    .card.spectrum {
-      background: linear-gradient(135deg, #4b2c20, #a0522d, #d7b274, #f5e9d0);
-      color: #fff;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-      border-color: rgba(255,255,255,0.3);
-    }
-    @media (hover: hover) {
-      .card.spectrum:hover {
-        border-color: #f5e9d0;
-        box-shadow: 0 0 20px rgba(215,178,116,0.4);
-      }
-    }
-
-    /* 🍊 AromaPochi */
-    .card.aroma {
-      background: radial-gradient(circle at 40% 30%, #fdf4e0, #f7dca4, #d7b274);
-      color:#3e2a18;
-      font-weight:500;
-      box-shadow:0 0 10px rgba(215,178,116,.3);
-      opacity: 0.9;
-    }
-    @media (hover: hover) {
-      .card.aroma:hover {
-        box-shadow:0 0 18px rgba(215,178,116,.5);
-        transform:translateY(-3px);
-      }
+      min-height: 130px;
+      overflow: hidden;
     }
     
-    /* 📜 Whisky History */
-    .card.history{
-        background: linear-gradient(150deg,#1a140e,#3a2c1d,#6b4a2a);
-        border:1px solid rgba(215,178,116,.4);
-        box-shadow:0 0 18px rgba(215,178,116,.35);
-    }
-
-    /* 📝 Whisky Quiz */
-    .card.quiz {
-      background: linear-gradient(155deg, #101a14, #1a2e22, #2d4d3a);
-      border: 1px solid rgba(215, 178, 116, 0.4);
-      box-shadow: 0 0 12px rgba(45, 77, 58, 0.3);
-    }
-    @media (hover: hover) {
-      .card.quiz:hover {
-        box-shadow: 0 0 20px rgba(45, 77, 58, 0.5);
-        border-color: var(--amber);
+    /* ホバー時の高級感ある光沢 */
+    @media (hover: hover) { 
+      .card:hover { 
+        transform:translateY(-5px); 
+        border-color:var(--amber);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      } 
+      .card::after { /* 光の筋が走るエフェクト */
+        content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+        transform: rotate(45deg); transition: 0.6s; opacity: 0;
       }
+      .card:hover::after { opacity: 1; transform: rotate(45deg) translate(20%, 20%); }
     }
 
-    /* 🥃 Whisky Tasting Step */
-    .card.step {
-      background: linear-gradient(160deg, #3a2c1a, #704d2b);
-      border-color:#cfa887;
-    }
+    .card h2 { margin:0 0 8px; font-size:1.3em; color:var(--amber); letter-spacing: 0.03em; }
+    .card p { font-size:.85em; opacity:.75; margin: 0; line-height: 1.6; font-weight: 300; }
 
-    /* 🌍 World Whisky Index */
-    .card.index {
-      background: linear-gradient(145deg, #0e0d18, #1f1b17);
-      border:1px solid #d7b274;
-      box-shadow:0 0 16px rgba(215,178,116,.3);
+    /* --- Column 1: "Deep Library" (知識系) --- */
+    /* 漆黒に近いブラウンで統一感 */
+    .card.index { background: linear-gradient(145deg, #12100e, #1c1815); }
+    .card.dict { background: linear-gradient(145deg, #151210, #221d1a); }
+    .card.quiz { 
+        background: linear-gradient(145deg, #0d1410, #16221a); /* 深緑をさらに暗くシックに */
+        border-color: rgba(142, 191, 154, 0.15);
     }
-    @media (min-width: 768px) {
-      .card.index { transform:none; }
-      .card.index:hover { transform:translateY(-4px); }
-    }
+    .card.quiz h2 { color: #9abf9e; }
 
-    /* ⚙️ Whisky Process */
-    .card.process {
-      background: linear-gradient(155deg, #1a1a1a, #2e261c, #5a4630);
-      border:1px solid rgba(215,178,116,.35);
-      box-shadow:0 0 12px rgba(215,178,116,.25);
-    }
+    /* --- Column 2: "Cask & Copper" (背景系) --- */
+    /* 銅や木材を思わせる暖色寄りのシックな配色 */
+    .card.history { background: linear-gradient(145deg, #1a1410, #2a1f18); }
+    .card.process { background: linear-gradient(145deg, #181818, #26221d); }
+    .card.cask { background: linear-gradient(145deg, #1d1712, #33261b); }
 
-    /* 🪵 Cask Atlas */
-    .card.cask {
-      background: linear-gradient(160deg, #1d1812, #34291f, #4d3925);
-      border-color:#9a7048;
-      box-shadow:0 0 10px rgba(154,112,72,.25);
+    /* --- Column 3: "Midnight Spirit" (ツール系) --- */
+    /* 都会的で実用的なイメージ */
+    .card.tours { 
+        background: linear-gradient(145deg, #0a0d14, #141a26); /* 濃紺で洗練さを */
+        border-color: rgba(215, 178, 116, 0.15);
     }
-
-    /* 🧭 Amber Tools */
-    .card.tours {
-      background: linear-gradient(145deg, #0c101a, #1b2433);
-      border-color:#d7b274;
-      color:#f3e6c1;
-      box-shadow:0 0 14px rgba(215,178,116,.25);
+    .card.spectrum { 
+      background: linear-gradient(135deg, #3d2419, #8a4a29, #c4a066); 
+      color: #fff; border: none;
     }
-
-    /* 📚 Amber Dictionary */
-    .card.dict {
-      background: linear-gradient(155deg, #1a1512, #2d241e, #493624);
-      border:1px solid rgba(215,178,116,.35);
-      box-shadow:0 0 12px rgba(215,178,116,.25);
+    .card.spectrum h2 { color: #f5e9d0; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+    .card.aroma { 
+      background: linear-gradient(135deg, #f7ebd3, #e8d1a7, #d7b274); /* 単色より深みのあるクリームゴールド */
+      color:#2d1f12; border: none;
     }
-
-    footer {
-      margin:20px 0 40px;
-      font-size:.8em;
-      color:#bba988;
-      opacity: 0.8;
-    }
+    .card.aroma h2 { color: #3d2419; }
+    .card.aroma p { opacity: 0.9; color: #4a321f; }
 
     @media screen and (max-width: 600px) {
-      header { padding: 30px 15px 5px; }
-      h1 { font-size: 1.5em; }
-      p.sub { font-size: 0.85em; }
-      .hub {
-        margin: 20px auto;
-        gap: 16px;
-        grid-template-columns: 1fr;
-        padding: 0 16px 40px;
-      }
-      .hub-col {
-        display: contents; 
-      }
-      .card {
-        padding: 24px 16px;
-        min-height: auto;
-        margin-bottom: 16px;
-      }
-      .card:last-child {
-          margin-bottom: 0;
-      }
+      .hub { grid-template-columns: 1fr; gap: 16px; padding: 0 16px 40px; }
+      .card.journey { grid-column: 1 / 2; padding: 35px 15px; }
+      .card.journey h2 { font-size: 1.6em; }
+      .hub-col { display: contents; }
+      .card { margin-bottom: 0; min-height: 110px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Amber Palette—Hub</h1>
-    <p class="sub">Whisky Tasting Step / Index / AromaPochi / Cask Atlas / Tools / History / Process / Spectrum / Quiz</p>
+    <h1>Amber Palette — Hub</h1>
   </header>
 
-<section class="hub">
+  <section class="hub">
     
+    <a href="https://whisky-tasting-step.vercel.app/" class="card journey" target="_blank">
+      <h2>Whisky Tasting Journey</h2>
+      <p>香味の流れを体験し、琥珀色の深淵へと踏み出す。<br>
+      Experience the flow of scent and start your journey.</p>
+    </a>
+
     <div class="hub-col">
         <a href="https://world-whisky-index.vercel.app/" class="card index" target="_blank">
           <h2>World Whisky Index</h2>
-          <p>世界の蒸留所と地域別検索<br>Global Distilleries</p>
+          <p>世界の蒸留所と地域別検索</p>
         </a>
-
         <a href="https://amber-dictionary.vercel.app/" class="card dict" target="_blank">
           <h2>Amber Dictionary</h2>
-          <p>ウィスキー用語辞典<br>Whisky Terms</p>
+          <p>ウィスキー用語辞典</p>
         </a>
-
-        <a href="https://whisky-history.vercel.app/" class="card history" target="_blank">
-            <h2>Whisky History</h2>
-            <p>歴史・法律・文化的背景<br>History and Culture</p>
-        </a>
-
         <a href="https://whisky-quiz.vercel.app/" class="card quiz" target="_blank">
           <h2>Whisky Quiz</h2>
-          <p>ウィスキーの知識を深めるクイズ<br>Knowledge Test</p>
+          <p>ウィスキーの知識を深めるクイズ</p>
         </a>
     </div>
     
     <div class="hub-col">
-        <a href="https://whisky-tasting-step.vercel.app/" class="card step" target="_blank">
-          <h2>Whisky Tasting Step</h2>
-          <p>香味の流れを体験するガイド<br>Scent Flow Guide</p>
+        <a href="https://whisky-history.vercel.app/" class="card history" target="_blank">
+            <h2>Whisky History</h2>
+            <p>歴史・法律・文化的背景</p>
         </a>
-        
         <a href="https://amber-whisky-process.vercel.app/" class="card process" target="_blank">
           <h2>Whisky Process</h2>
-          <p>製麦から瓶詰めまでの工程解説<br>Production Process</p>
+          <p>製麦から瓶詰めまでの工程解説</p>
         </a>
-
         <a href="https://amber-atlas.vercel.app/" class="card cask" target="_blank">
           <h2>Cask Atlas</h2>
-          <p>樽タイプ・サイズ・熟成を学ぶ<br>Cask & Maturation</p>
+          <p>樽タイプ・サイズ・熟成を学ぶ</p>
         </a>
     </div>
 
     <div class="hub-col">
         <a href="https://amber-tools-hub.vercel.app/" class="card tours" target="_blank">
           <h2>Amber Tools</h2>
-          <p>ちょっと便利ツール<br>Little Helpers</p>
+          <p>ちょっと便利ツール</p>
         </a>
-
         <a href="https://amber-spectrum.vercel.app/" class="card spectrum" target="_blank">
           <h2>Amber Spectrum</h2>
-          <p>香味と色彩の相関を俯瞰する<br>Color & Flavor Correlation</p>
+          <p>香味と色彩の相関を俯瞰する</p>
         </a>
-
         <a href="https://aromapochi.vercel.app/" class="card aroma" target="_blank">
           <h2>Aroma Pochi</h2>
-          <p>色と香りを可視化する<br>Drawing Out Scent</p>
+          <p>色と香りを可視化する</p>
         </a>
     </div>
 
