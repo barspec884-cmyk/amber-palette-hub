@@ -73,10 +73,9 @@
       text-shadow:0 2px 4px rgba(0,0,0,0.5);
     }
 
-    /* ===== Tools（フル幅） ===== */
+    /* ===== Tools ===== */
 
     .card.tools {
-      grid-column:1 / 3;
       background: linear-gradient(145deg,#0a0d14,#141a26);
     }
 
@@ -178,6 +177,10 @@
       background: linear-gradient(145deg,#1d1712,#33261b);
     }
 
+    .card.lexicon {
+      background: linear-gradient(145deg,#14110e,#261e18);
+    }
+
     /* ===== フッター ===== */
 
     footer {
@@ -205,10 +208,6 @@
         font-size:1.6em;
       }
 
-      .card.tools {
-        grid-column:1 / 2;
-      }
-
       .card {
         min-height:110px;
       }
@@ -230,43 +229,45 @@
       Experience the flow of scent and start your journey.</p>
     </a>
 
-    <!-- 左列・上 -->
+    <!-- 1段目 -->
     <a href="https://world-whisky-index.vercel.app/" class="card index" target="_blank">
       <h2>World Whisky Index</h2>
       <p>世界の蒸留所と地域別検索</p>
     </a>
 
-    <!-- 右列・上 -->
+    <a href="https://amber-lexicon.vercel.app/" class="card lexicon" target="_blank">
+      <h2>Amber Lexicon</h2>
+      <p>テイスティングガイド＆ログ</p>
+    </a>
+
+    <!-- 2段目 -->
     <a href="https://amber-dictionary.vercel.app/" class="card dict" target="_blank">
       <h2>Amber Dictionary</h2>
       <p>ウィスキー用語辞典</p>
     </a>
 
-    <!-- 左列・中 -->
     <a href="https://whisky-history.vercel.app/" class="card history" target="_blank">
       <h2>Whisky History</h2>
       <p>歴史・法律・文化的背景</p>
     </a>
 
-    <!-- 右列・中 -->
+    <!-- 3段目 -->
     <a href="https://amber-whisky-process.vercel.app/" class="card process" target="_blank">
       <h2>Whisky Process</h2>
       <p>製麦から瓶詰めまでの工程解説</p>
     </a>
 
-    <!-- 左列・下 -->
     <a href="https://amber-atlas.vercel.app/" class="card cask" target="_blank">
       <h2>Cask Atlas</h2>
       <p>樽タイプ・サイズ・熟成を学ぶ</p>
     </a>
 
-    <!-- 右列・下 -->
+    <!-- 4段目 -->
     <a href="https://whisky-quiz.vercel.app/" class="card quiz" target="_blank">
       <h2>Whisky Quiz</h2>
       <p>ウィスキーの知識を深めるクイズ</p>
     </a>
 
-    <!-- フル幅・最下段 -->
     <a href="https://amber-tools-hub.vercel.app/" class="card tools" target="_blank">
       <h2>Amber Tools</h2>
       <p>ちょっと便利ツール</p>
